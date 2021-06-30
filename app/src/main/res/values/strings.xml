@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GitHubUser Info</string>
+    <string name="input_username_hint">Username</string>
+    <string name="button_login_text">Login</string>
+</resources>
