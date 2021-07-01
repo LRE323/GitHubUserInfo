@@ -1,6 +1,7 @@
 package com.example.githubuserinfo.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +50,7 @@ class UserActivity : AppCompatActivity() {
 
         // Get all the required information from the GitHubUser
         val login: String? = this.gitHubUser.login
+        val avatarURL: String? = this.gitHubUser.avatar
         val blog: String? = this.gitHubUser.blog
         val name: String? = this.gitHubUser.name
         val location: String? = this.gitHubUser.location

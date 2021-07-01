@@ -27,6 +27,7 @@ data class GitHubUser(
 
         @SerializedName("public_repos")
         val publicRepos: String?
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString().toString(),
