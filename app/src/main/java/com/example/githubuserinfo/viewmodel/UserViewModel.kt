@@ -1,5 +1,7 @@
 package com.example.githubuserinfo.viewmodel
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.githubuserinfo.model.GitHubUser
@@ -16,12 +18,13 @@ class UserViewModel : ViewModel() {
     // The Repository that accesses the network.
     private val repository = Repository()
 
+
     /**
      * Attempts to retrieve the GitHubUser from the login provided.
      *
      * If the response is successful, it will update the value of userLiveData.
      */
-    fun submitGitHubUser(login: String) {
+    fun submitGitHubUser(login: String, context: Context) {
 
         // Call for the desired GitHubUser.
         val call: Call<GitHubUser> = repository.getUser(login)
@@ -37,20 +40,34 @@ class UserViewModel : ViewModel() {
                 // If the response is successful.
                 if (response.isSuccessful) {
 
+                    Toast.makeText(context, SUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
+
                     // Get the GitHubUser from the response.
                     val tempUser: GitHubUser? = response.body()
 
                     // Set gitHubUser.
                     userLiveData.value = tempUser
+
+                } else {
+                    Toast.makeText(context, UNSUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
                 }
+
             }
 
             /**
              * Called if the network request fails.
              */
             override fun onFailure(call: Call<GitHubUser>, t: Throwable) {
+                Toast.makeText(context, FAILED_REQUEST, Toast.LENGTH_SHORT).show()
             }
 
         })
+    }
+
+    companion object {
+        private const val SUCCESSFUL_RESPONSE: String = "Successful response"
+        private const val UNSUCCESSFUL_RESPONSE: String = "User not found. Please try again."
+        private const val FAILED_REQUEST: String =
+            "Failed request. Please check your internet connection."
     }
 }

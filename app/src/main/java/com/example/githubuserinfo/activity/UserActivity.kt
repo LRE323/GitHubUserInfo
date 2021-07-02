@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.githubuserinfo.R
 import com.example.githubuserinfo.model.GitHubUser
 import com.example.githubuserinfo.rest.Repository
@@ -49,13 +50,16 @@ class UserActivity : AppCompatActivity() {
         val location: String? = gitHubUser.location
         val bio: String? = gitHubUser.bio
 
-        // Update all the views in UserActivity with appropriate information.
+        // Update all the TextViews with appropriate information.
         this.tvLogin.text = login
-        // TODO: Load the GitHubUser avatar image.
-        this.tvName.text = "Name: $name"
-        this.tvBlog.text = "Blog: $blog"
-        this.tvLocation.text = "Location: $location"
-        this.tvBio.text = "Bio: $bio"
+        this.tvName.text = getString(R.string.textview_name_text, name)
+        this.tvBlog.text = getString(R.string.textview_blog_text, blog)
+        this.tvLocation.text = getString(R.string.textview_location_text, location)
+        this.tvBio.text = getString(R.string.textview_bio_text, bio)
+
+        // Load avatar image.
+        Glide.with(this).load(avatarURL).into(ivAvatar)
+
     }
 
     /**
@@ -83,6 +87,7 @@ class UserActivity : AppCompatActivity() {
 
         // Create a new ViewModel.
         viewModel = viewModelProvider.get(UserViewModel::class.java)
+
     }
 
     /**
@@ -104,6 +109,6 @@ class UserActivity : AppCompatActivity() {
         viewModel.userLiveData.observe(this, observer)
 
         // Submit the login so the ViewModel can attempt to retrieve it from the network.
-        viewModel.submitGitHubUser(login)
+        viewModel.submitGitHubUser(login, this)
     }
 }
