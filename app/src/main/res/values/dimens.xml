@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_default_activity_login">50dp</dimen>
+    <dimen name="margin_default_activity_login">25dp</dimen>
     <dimen name="margin_default_activity_user">10dp</dimen>
 </resources>

@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
 
+    <TextView
+        android:id="@+id/tvEnterUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_activity_login"
+        android:text="Enter a GitHub user"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/loginInput"
@@ -19,7 +29,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvEnterUser" />
 
     <Button
         android:id="@+id/loginButton"
@@ -31,4 +41,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginInput" />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        android:id="@+id/tvCheckOutMine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_activity_login"
+        android:text="Or check out mine!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnOpenLuisGitHub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_activity_login"
+        android:layout_marginTop="@dimen/margin_default_activity_login"
+        android:onClick="openLuisGitHub"
+        android:text="@string/button_open_luis_github_text"
+app:layout_constraintTop_toBottomOf="@id/tvCheckOutMine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

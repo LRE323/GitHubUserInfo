@@ -32,11 +32,8 @@ class LoginActivity : AppCompatActivity() {
         // Get the login.
         val login = etLoginInput.text.toString()
 
-        // Create a new Intent.
-        val intent = Intent(this, UserActivity::class.java)
-
-        // Put the login in the intent.
-        intent.putExtra("login", login)
+        // Create a new intent.
+        val intent = createIntent(login)
 
         // Start the Activity.
         startActivity(intent)
@@ -46,5 +43,22 @@ class LoginActivity : AppCompatActivity() {
     private fun initUserInterfaceObjects() {
         this.etLoginInput = findViewById(R.id.loginInput)
         this.btnLogin = findViewById(R.id.loginButton)
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun openLuisGitHub(view: View) {
+
+        // Create the login.
+        val login = "LRE323"
+
+        // Create a new intent.
+        val intent = createIntent(login)
+
+        // Start the Activity.
+        startActivity(intent)
+    }
+
+    private fun createIntent(login: String): Intent {
+        return Intent(this, UserActivity::class.java).putExtra("login", login)
     }
 }
