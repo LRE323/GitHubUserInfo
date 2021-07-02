@@ -11,7 +11,7 @@ object APIClient {
     // The Gson converter for Retrofit
     private val gsonConverter: GsonConverterFactory = GsonConverterFactory.create()
 
-    // The single instance of Retrofit
+    // The instance of Retrofit.
     val retrofit: Retrofit = Retrofit
             .Builder()
             .baseUrl(BASE_URL)

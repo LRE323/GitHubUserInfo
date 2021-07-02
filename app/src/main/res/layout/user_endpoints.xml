@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvName"
-        android:layout_margin="@dimen/margin_default_activity_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Name: John Smith"
-        android:text="Name goes here"
-        />
+        android:layout_margin="@dimen/margin_default_activity_user"
+        tools:text="Name: John Smith" />
 
     <TextView
         android:id="@+id/tvBlog"
-        android:layout_margin="@dimen/margin_default_activity_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Blog: personalwesbite.com"
-        />
+        android:layout_margin="@dimen/margin_default_activity_user"
+        tools:text="Blog: personalwebsite.com" />
 
     <TextView
         android:id="@+id/tvLocation"
-        android:layout_margin="@dimen/margin_default_activity_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Location: Seattle, WA"/>
+        android:layout_margin="@dimen/margin_default_activity_user"
+        tools:text="Location: Seattle, WA" />
 
     <TextView
         android:id="@+id/tvBio"
-        android:layout_margin="@dimen/margin_default_activity_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Bio: Hello, I am capable of programming."/>
+        android:layout_margin="@dimen/margin_default_activity_user"
+        tools:text="Bio: Hello, I am capable of programming." />
 
 </LinearLayout>
