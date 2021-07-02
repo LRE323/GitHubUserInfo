@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.githubuserinfo.R
 import com.example.githubuserinfo.model.GitHubUser
-import com.example.githubuserinfo.rest.Repository
 import com.example.githubuserinfo.viewmodel.UserViewModel
 import com.example.githubuserinfo.viewmodelfactory.UserViewModelFactory
 
@@ -32,6 +32,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var tvBio: TextView
     private lateinit var tvPublicRepos: TextView
     private lateinit var btnViewProfile: Button
+    private lateinit var btnViewBlog: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,12 +71,12 @@ class UserActivity : AppCompatActivity() {
         this.tvBio.text = getString(R.string.textview_bio_text, bio)
         this.tvPublicRepos.text = getString(R.string.texview_public_repos_text, publicRepos)
 
-        // Display btnViewPublicRepos
+        // Display the buttons.
         this.btnViewProfile.visibility = View.VISIBLE
+        this.btnViewBlog.visibility = View.VISIBLE
 
         // Load avatar image.
         Glide.with(this).load(avatarURL).into(ivAvatar)
-
     }
 
     /**
@@ -92,11 +93,13 @@ class UserActivity : AppCompatActivity() {
         this.tvBio = findViewById(R.id.tvBio)
         this.tvPublicRepos = findViewById(R.id.tvPublicRepos)
 
-        // Initially btnViewPublicRepos
+        // Initialize the buttons.
         this.btnViewProfile = findViewById(R.id.btnViewProfile)
+        this.btnViewBlog = findViewById(R.id.btnViewBlog)
 
-        // Initially set the visibility of the button to be invisible.
+        // Initially set the visibility of the buttons to invisible
         this.btnViewProfile.visibility = View.INVISIBLE
+        this.btnViewBlog.visibility = View.INVISIBLE
     }
 
     /**
@@ -105,7 +108,7 @@ class UserActivity : AppCompatActivity() {
     private fun initViewModel() {
 
         // Create a LoginViewModelFactory.
-        val factory = UserViewModelFactory(Repository())
+        val factory = UserViewModelFactory()
 
         // Create a new ViewModelProvider.
         val viewModelProvider = ViewModelProvider(this, factory)
@@ -138,21 +141,44 @@ class UserActivity : AppCompatActivity() {
     }
 
     /**
-     * Opens a web browser with a link to the user's public repositories.
+     * Opens the user's profile in a web browser.
      */
+    @Suppress("UNUSED_PARAMETER")
     fun viewProfile(view: View) {
 
-        // Create the URL to the repositories.
+        // Get the profile URL.
         val url: String? = viewModel.gitHubUser?.profileURL
 
-        // If the URL is null.
-        if (url == null) {
+        // Attempt to open the URL.
+        launchWebBrowser(url)
+    }
+
+    /**
+     * Opens the user's blog in a web browser.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    fun viewBlog(view: View) {
+
+        // Get the blog URL.
+        val url: String? = viewModel.gitHubUser?.blog
+
+        // Attempt to open the URL.
+        launchWebBrowser(url)
+    }
+
+    private fun launchWebBrowser(url: String?) {
+
+        // If the URL is valid.
+        if (URLUtil.isValidUrl(url)) {
+
+            // Create a new web intent.
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+            // Open a web browser.
+            startActivity(webIntent)
+        } else {
             // Don't do anything.
             Toast.makeText(this, "Invalid link", Toast.LENGTH_SHORT).show()
-        } else {
-            // Open a web browser with a link.
-            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(webIntent)
         }
     }
 }

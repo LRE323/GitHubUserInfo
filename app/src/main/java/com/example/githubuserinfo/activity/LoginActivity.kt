@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     /**
      * onClicked for btnLogin
      */
+    @Suppress("UNUSED_PARAMETER")
     fun login(view: View) {
 
         // Get the login.
