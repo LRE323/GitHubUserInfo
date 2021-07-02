@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     /**
      * onClicked for btnLogin
      */
-    fun login(view: View?) {
+    fun login(view: View) {
 
         // Get the login.
         val login = etLoginInput.text.toString()

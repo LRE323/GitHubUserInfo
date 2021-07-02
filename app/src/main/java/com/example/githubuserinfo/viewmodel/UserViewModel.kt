@@ -13,6 +13,9 @@ import retrofit2.Response
 class UserViewModel : ViewModel() {
 
     // The GitHubUser retrieved from the login info.
+    var gitHubUser: GitHubUser? = null
+
+    // LiveData for the GitHubUser
     val userLiveData = MutableLiveData<GitHubUser?>()
 
     // The Repository that accesses the network.
@@ -43,11 +46,12 @@ class UserViewModel : ViewModel() {
                     Toast.makeText(context, SUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
 
                     // Get the GitHubUser from the response.
-                    val tempUser: GitHubUser? = response.body()
+                    gitHubUser = response.body()
 
-                    // Set gitHubUser.
-                    userLiveData.value = tempUser
+                    // Set the LiveData value to the GitHubUser.
+                    userLiveData.value = gitHubUser
 
+                // If the response is unsuccessful.
                 } else {
                     Toast.makeText(context, UNSUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
                 }

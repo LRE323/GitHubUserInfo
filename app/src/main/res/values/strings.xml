@@ -8,4 +8,5 @@
     <string name="textview_bio_text">Bio: %1$s</string>
     <string name="texview_public_repos_text">Public repositories: %1$s</string>
     <string name="imageview_avatar_content_description">GitHub user avatar image</string>
+    <string name="button_view_profile_text">View profile</string>
 </resources>

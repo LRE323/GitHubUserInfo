@@ -23,6 +23,8 @@ data class GitHubUser(
     val bio: String?,
 
     @SerializedName("public_repos")
-    val publicRepos: String?
+    val publicRepos: String?,
 
+    @SerializedName("html_url")
+    val profileURL: String?
 )
