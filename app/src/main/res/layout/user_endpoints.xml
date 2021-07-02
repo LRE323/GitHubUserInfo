@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_default_activity_user"
-        tools:text="Blog: personalwebsite.com" />
+        tools:text="Blog: personal_ website.com" />
 
     <TextView
         android:id="@+id/tvLocation"

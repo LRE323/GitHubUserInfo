@@ -2,7 +2,6 @@ package com.example.githubuserinfo.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,7 @@ class LoginActivity : AppCompatActivity() {
     // UI variables
     private lateinit var etLoginInput: EditText
     private lateinit var btnLogin: Button
+    private lateinit var btnSampleUser: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,41 +21,42 @@ class LoginActivity : AppCompatActivity() {
         // Create the UI objects
         initUserInterfaceObjects()
 
+        // Set the onClickListeners
+        setOnClickListeners()
     }
 
-    /**
-     * onClicked for btnLogin
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun login(view: View) {
+    private fun setOnClickListeners() {
 
-        // Get the login.
-        val login = etLoginInput.text.toString()
+        this.btnLogin.setOnClickListener {
 
-        // Create a new intent.
-        val intent = createIntent(login)
+            // Get the login.
+            val login = etLoginInput.text.toString()
 
-        // Start the Activity.
-        startActivity(intent)
+            // Create a new intent.
+            val intent = createIntent(login)
+
+            // Start the Activity.
+            startActivity(intent)
+        }
+
+        this.btnSampleUser.setOnClickListener {
+
+            // Create the login.
+            val login = "LRE323"
+
+            // Create a new intent.
+            val intent = createIntent(login)
+
+            // Start the Activity.
+            startActivity(intent)
+        }
 
     }
 
     private fun initUserInterfaceObjects() {
         this.etLoginInput = findViewById(R.id.loginInput)
-        this.btnLogin = findViewById(R.id.loginButton)
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun openLuisGitHub(view: View) {
-
-        // Create the login.
-        val login = "LRE323"
-
-        // Create a new intent.
-        val intent = createIntent(login)
-
-        // Start the Activity.
-        startActivity(intent)
+        this.btnLogin = findViewById(R.id.btnLogin)
+        this.btnSampleUser = findViewById(R.id.btnOpenSampleUserGitHub)
     }
 
     private fun createIntent(login: String): Intent {

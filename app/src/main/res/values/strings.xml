@@ -1,14 +1,16 @@
 <resources>
-    <string name="app_name">GitHubUser Info</string>
+    <string name="app_name">GitHub User Info</string>
     <string name="input_username_hint">Username</string>
     <string name="button_login_text">Login</string>
     <string name="textview_name_text">Name: %1$s</string>
     <string name="textview_blog_text">Blog: %1$s</string>
     <string name="textview_location_text">Location: %1$s</string>
     <string name="textview_bio_text">Bio: %1$s</string>
-    <string name="texview_public_repos_text">Public repositories: %1$s</string>
+    <string name="textview_public_repos_text">Public repositories: %1$s</string>
     <string name="imageview_avatar_content_description">GitHub user avatar image</string>
     <string name="button_view_profile_text">View profile</string>
     <string name="button_view_blog_text">View blog</string>
     <string name="button_open_luis_github_text">Luis Ruiz GitHub</string>
+    <string name="textview_enter_user_text">Enter a GitHub user</string>
+    <string name="textview_sample_user_text">Or check out mine!</string>
 </resources>

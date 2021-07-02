@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_default_activity_login"
-        android:text="Enter a GitHub user"
+        android:text="@string/textview_enter_user_text"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,38 +32,41 @@
         app:layout_constraintTop_toBottomOf="@id/tvEnterUser" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/btnLogin"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default_activity_login"
-        android:onClick="login"
         android:text="@string/button_login_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginInput" />
+        app:layout_constraintTop_toBottomOf="@+id/loginInput"
+        app:strokeColor="@color/secondary" />
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/loginButton"
-        android:id="@+id/tvCheckOutMine"
+        android:id="@+id/tvSampleUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_default_activity_login"
-        android:text="Or check out mine!"
+        android:text="@string/textview_sample_user_text"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
     <Button
-        android:id="@+id/btnOpenLuisGitHub"
+        android:id="@+id/btnOpenSampleUserGitHub"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_default_activity_login"
         android:layout_marginTop="@dimen/margin_default_activity_login"
-        android:onClick="openLuisGitHub"
         android:text="@string/button_open_luis_github_text"
-app:layout_constraintTop_toBottomOf="@id/tvCheckOutMine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSampleUser"
+        app:strokeColor="@color/secondary" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

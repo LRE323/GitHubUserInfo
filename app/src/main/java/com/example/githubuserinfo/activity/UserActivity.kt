@@ -46,6 +46,32 @@ class UserActivity : AppCompatActivity() {
 
         // Observe the LiveData.
         initLiveDataObservation()
+
+        // Set all the onClickListeners.
+        setOnClickListeners()
+    }
+
+    /**
+     * Sets all the onClickListeners for this activity.
+     */
+    private fun setOnClickListeners() {
+
+        btnViewProfile.setOnClickListener {
+            // Get the profile URL.
+            val url: String? = viewModel.gitHubUser?.profileURL
+
+            // Attempt to open the URL.
+            launchWebBrowser(url)
+        }
+
+        btnViewBlog.setOnClickListener {
+
+            // Get the blog URL.
+            val url: String? = viewModel.gitHubUser?.blog
+
+            // Attempt to open the URL.
+            launchWebBrowser(url)
+        }
     }
 
     /**
@@ -69,7 +95,7 @@ class UserActivity : AppCompatActivity() {
         this.tvBlog.text = getString(R.string.textview_blog_text, blog)
         this.tvLocation.text = getString(R.string.textview_location_text, location)
         this.tvBio.text = getString(R.string.textview_bio_text, bio)
-        this.tvPublicRepos.text = getString(R.string.texview_public_repos_text, publicRepos)
+        this.tvPublicRepos.text = getString(R.string.textview_public_repos_text, publicRepos)
 
         // Display the buttons.
         this.btnViewProfile.visibility = View.VISIBLE
@@ -138,32 +164,6 @@ class UserActivity : AppCompatActivity() {
 
         // Submit the login so the ViewModel can attempt to retrieve it from the network.
         viewModel.submitGitHubUser(login, this)
-    }
-
-    /**
-     * Opens the user's profile in a web browser.
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun viewProfile(view: View) {
-
-        // Get the profile URL.
-        val url: String? = viewModel.gitHubUser?.profileURL
-
-        // Attempt to open the URL.
-        launchWebBrowser(url)
-    }
-
-    /**
-     * Opens the user's blog in a web browser.
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun viewBlog(view: View) {
-
-        // Get the blog URL.
-        val url: String? = viewModel.gitHubUser?.blog
-
-        // Attempt to open the URL.
-        launchWebBrowser(url)
     }
 
     private fun launchWebBrowser(url: String?) {

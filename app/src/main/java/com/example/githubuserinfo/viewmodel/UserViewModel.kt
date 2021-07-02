@@ -43,8 +43,6 @@ class UserViewModel : ViewModel() {
                 // If the response is successful.
                 if (response.isSuccessful) {
 
-                    Toast.makeText(context, SUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
-
                     // Get the GitHubUser from the response.
                     gitHubUser = response.body()
 
@@ -69,7 +67,6 @@ class UserViewModel : ViewModel() {
     }
 
     companion object {
-        private const val SUCCESSFUL_RESPONSE: String = "Successful response"
         private const val UNSUCCESSFUL_RESPONSE: String = "User not found. Please try again."
         private const val FAILED_REQUEST: String =
             "Failed request. Please check your internet connection."
