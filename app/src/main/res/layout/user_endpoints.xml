@@ -33,4 +33,11 @@
         android:layout_margin="@dimen/margin_default_activity_user"
         tools:text="Bio: Hello, I am capable of programming." />
 
+    <TextView
+        android:id="@+id/tvPublicRepos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_activity_user"
+        tools:text="Public repositories: 10" />
+
 </LinearLayout>

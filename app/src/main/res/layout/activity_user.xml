@@ -12,20 +12,21 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="@dimen/margin_default_activity_user"
+        android:contentDescription="@string/imageview_avatar_content_description"
         android:src="@drawable/avatar_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivAvatar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Login" />
+        tools:text="Username" />
 
     <include
         layout="@layout/user_endpoints"

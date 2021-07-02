@@ -25,6 +25,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var tvBlog: TextView
     private lateinit var tvLocation: TextView
     private lateinit var tvBio: TextView
+    private lateinit var tvPublicRepos: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +44,13 @@ class UserActivity : AppCompatActivity() {
     private fun updateUserInterface(gitHubUser: GitHubUser) {
 
         // Get all the required information from the GitHubUser
-        val login: String? = gitHubUser.login
+        val login: String = gitHubUser.login ?: "No login found"
         val avatarURL: String? = gitHubUser.avatar
-        val blog: String? = gitHubUser.blog
-        val name: String? = gitHubUser.name
-        val location: String? = gitHubUser.location
-        val bio: String? = gitHubUser.bio
+        val blog: String = gitHubUser.blog ?: "No blog found"
+        val name: String = gitHubUser.name ?: "No name found"
+        val location: String = gitHubUser.location ?: "No location found"
+        val bio: String = gitHubUser.bio ?: "No bio found"
+        val repos: String = gitHubUser.publicRepos ?: "Number of public repositories not found"
 
         // Update all the TextViews with appropriate information.
         this.tvLogin.text = login
@@ -56,6 +58,7 @@ class UserActivity : AppCompatActivity() {
         this.tvBlog.text = getString(R.string.textview_blog_text, blog)
         this.tvLocation.text = getString(R.string.textview_location_text, location)
         this.tvBio.text = getString(R.string.textview_bio_text, bio)
+        this.tvPublicRepos.text = getString(R.string.texview_public_repos_text, repos)
 
         // Load avatar image.
         Glide.with(this).load(avatarURL).into(ivAvatar)
@@ -72,6 +75,7 @@ class UserActivity : AppCompatActivity() {
         this.tvBlog = findViewById(R.id.tvBlog)
         this.tvLocation = findViewById(R.id.tvLocation)
         this.tvBio = findViewById(R.id.tvBio)
+        this.tvPublicRepos = findViewById(R.id.tvPublicRepos)
     }
 
     /**

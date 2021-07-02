@@ -6,4 +6,6 @@
     <string name="textview_blog_text">Blog: %1$s</string>
     <string name="textview_location_text">Location: %1$s</string>
     <string name="textview_bio_text">Bio: %1$s</string>
+    <string name="texview_public_repos_text">Public repositories: %1$s</string>
+    <string name="imageview_avatar_content_description">GitHub user avatar image</string>
 </resources>
