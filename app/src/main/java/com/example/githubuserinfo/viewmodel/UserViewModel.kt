@@ -46,7 +46,7 @@ class UserViewModel : ViewModel() {
                     // Get the GitHubUser from the response.
                     gitHubUser = response.body()
 
-                    // Set the LiveData value to the GitHubUser.
+                    // Update the LiveData value to the GitHubUser.
                     userLiveData.value = gitHubUser
 
                 // If the response is unsuccessful.
