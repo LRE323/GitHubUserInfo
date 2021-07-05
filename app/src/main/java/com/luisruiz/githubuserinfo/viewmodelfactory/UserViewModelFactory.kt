@@ -1,8 +1,8 @@
-package com.example.githubuserinfo.viewmodelfactory
+package com.luisruiz.githubuserinfo.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubuserinfo.viewmodel.UserViewModel
+import com.luisruiz.githubuserinfo.viewmodel.UserViewModel
 
 class UserViewModelFactory : ViewModelProvider.Factory {
 

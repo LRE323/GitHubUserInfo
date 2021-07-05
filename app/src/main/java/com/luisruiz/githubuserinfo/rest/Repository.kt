@@ -1,6 +1,6 @@
-package com.example.githubuserinfo.rest
+package com.luisruiz.githubuserinfo.rest
 
-import com.example.githubuserinfo.model.GitHubUser
+import com.luisruiz.githubuserinfo.model.GitHubUser
 import retrofit2.Call
 import retrofit2.Retrofit
 

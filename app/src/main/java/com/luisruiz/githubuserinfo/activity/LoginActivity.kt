@@ -1,11 +1,11 @@
-package com.example.githubuserinfo.activity
+package com.luisruiz.githubuserinfo.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.example.githubuserinfo.R
+import com.luisruiz.githubuserinfo.R
 
 class LoginActivity : AppCompatActivity() {
 

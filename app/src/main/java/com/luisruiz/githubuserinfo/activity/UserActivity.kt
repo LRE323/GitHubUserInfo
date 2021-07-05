@@ -1,4 +1,4 @@
-package com.example.githubuserinfo.activity
+package com.luisruiz.githubuserinfo.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.githubuserinfo.R
-import com.example.githubuserinfo.model.GitHubUser
-import com.example.githubuserinfo.viewmodel.UserViewModel
-import com.example.githubuserinfo.viewmodelfactory.UserViewModelFactory
+import com.luisruiz.githubuserinfo.R
+import com.luisruiz.githubuserinfo.model.GitHubUser
+import com.luisruiz.githubuserinfo.viewmodel.UserViewModel
+import com.luisruiz.githubuserinfo.viewmodelfactory.UserViewModelFactory
 
 class UserActivity : AppCompatActivity() {
 

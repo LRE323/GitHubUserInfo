@@ -1,4 +1,4 @@
-package com.example.githubuserinfo.model
+package com.luisruiz.githubuserinfo.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.example.githubuserinfo.rest
+package com.luisruiz.githubuserinfo.rest
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

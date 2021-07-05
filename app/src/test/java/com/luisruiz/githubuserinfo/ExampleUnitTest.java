@@ -1,4 +1,4 @@
-package com.example.githubuserinfo;
+package com.luisruiz.githubuserinfo;
 
 import org.junit.Test;
 
