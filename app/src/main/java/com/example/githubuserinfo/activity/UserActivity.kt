@@ -159,7 +159,7 @@ class UserActivity : AppCompatActivity() {
             onUpdate(gitHubUser)
         }
 
-        // Observe the LiveData
+        // Observe the LiveData.
         viewModel.userLiveData.observe(this, observer)
 
         // Submit the login so the ViewModel can attempt to retrieve it from the network.
