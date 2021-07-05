@@ -57,6 +57,7 @@ class UserActivity : AppCompatActivity() {
     private fun setOnClickListeners() {
 
         btnViewProfile.setOnClickListener {
+
             // Get the profile URL.
             val url: String? = viewModel.gitHubUser?.profileURL
 
