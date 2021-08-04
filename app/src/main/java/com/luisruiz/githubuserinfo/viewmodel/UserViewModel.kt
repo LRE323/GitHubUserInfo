@@ -10,17 +10,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserViewModel : ViewModel() {
+class UserViewModel(private val repository: Repository) : ViewModel() {
 
     // The GitHubUser retrieved from the login info.
     var gitHubUser: GitHubUser? = null
 
     // LiveData for the GitHubUser
     val userLiveData = MutableLiveData<GitHubUser?>()
-
-    // The Repository that accesses the network.
-    private val repository = Repository()
-
 
     /**
      * Attempts to retrieve the GitHubUser from the login provided.
