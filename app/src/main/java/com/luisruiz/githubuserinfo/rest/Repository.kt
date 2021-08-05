@@ -7,8 +7,6 @@ import retrofit2.Retrofit
 
 class Repository(private val gitHubService: GitHubService) {
 
-    private val retrofit: Retrofit = APIClient.retrofit
-
     /**
      * Get a user from the network with the login provided.
      */
