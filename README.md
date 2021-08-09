@@ -5,7 +5,7 @@ GitHub User Info can be [downloaded from the Play Store.](https://play.google.co
 
 This application is written written in Kotlin and uses the following libraries:
 
-* Retrofit
+* Retrofit with coroutines
 * Glide
 
 # Login Screen
