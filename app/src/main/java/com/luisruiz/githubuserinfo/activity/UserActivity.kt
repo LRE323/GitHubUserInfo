@@ -11,12 +11,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.luisruiz.githubuserinfo.R
 import com.luisruiz.githubuserinfo.model.GitHubUser
+import com.luisruiz.githubuserinfo.rest.APIClient
+import com.luisruiz.githubuserinfo.rest.GitHubService
+import com.luisruiz.githubuserinfo.rest.Repository
 import com.luisruiz.githubuserinfo.viewmodel.UserViewModel
-import com.luisruiz.githubuserinfo.viewmodelfactory.UserViewModelFactory
 
 class UserActivity : AppCompatActivity() {
 
@@ -134,14 +135,7 @@ class UserActivity : AppCompatActivity() {
      */
     private fun initViewModel() {
 
-        // Create a LoginViewModelFactory.
-        val factory = UserViewModelFactory()
-
-        // Create a new ViewModelProvider.
-        val viewModelProvider = ViewModelProvider(this, factory)
-
-        // Create a new ViewModel.
-        viewModel = viewModelProvider.get(UserViewModel::class.java)
+        viewModel = UserViewModel(Repository(APIClient.retrofit.create(GitHubService::class.java)))
 
     }
 
@@ -153,18 +147,26 @@ class UserActivity : AppCompatActivity() {
         // Get the login from the intent.
         val login: String = intent.getStringExtra("login").toString()
 
-        // Create the observer.
-        val observer = Observer<GitHubUser?> { gitHubUser ->
+        // Create the observer for the GitHubUser.
+        val observerGitHubUser = Observer<GitHubUser?> { gitHubUser ->
 
             //Update with GitHubUser information.
             onUpdate(gitHubUser)
         }
 
-        // Observe the LiveData.
-        viewModel.userLiveData.observe(this, observer)
+        // Create the observer for the request result.
+        val observerRequestResultMessage = Observer<String> { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+
+        // Observe the GitHubUser.
+        viewModel.gitHubUserLiveData.observe(this, observerGitHubUser)
+
+        // Observe the request result.
+        viewModel.requestResultMessage.observe(this, observerRequestResultMessage)
 
         // Submit the login so the ViewModel can attempt to retrieve it from the network.
-        viewModel.submitGitHubUser(login, this)
+        viewModel.submitGitHubUser(login)
     }
 
     private fun launchWebBrowser(url: String?) {

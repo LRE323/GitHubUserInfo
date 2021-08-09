@@ -1,14 +1,12 @@
 package com.luisruiz.githubuserinfo.viewmodel
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.luisruiz.githubuserinfo.model.GitHubUser
 import com.luisruiz.githubuserinfo.rest.Repository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
+import retrofit2.awaitResponse
 
 class UserViewModel(private val repository: Repository) : ViewModel() {
 
@@ -16,55 +14,58 @@ class UserViewModel(private val repository: Repository) : ViewModel() {
     var gitHubUser: GitHubUser? = null
 
     // LiveData for the GitHubUser
-    val userLiveData = MutableLiveData<GitHubUser?>()
+    val gitHubUserLiveData = MutableLiveData<GitHubUser?>()
+
+    // The LiveData for the result of the GitHubUser request.
+    var requestResultMessage = MutableLiveData<String>()
 
     /**
      * Attempts to retrieve the GitHubUser from the login provided.
      *
-     * If the response is successful, it will update the value of userLiveData.
+     * If the response is successful, it will update the LiveData for the GitHubUser.
      */
-    fun submitGitHubUser(login: String, context: Context) {
+    fun submitGitHubUser(login: String) {
 
-        // Call for the desired GitHubUser.
-        val call: Call<GitHubUser> = repository.getUser(login)
+        // Create a new coroutine that will execute the network request. All coroutines must run in
+        // a scope. A CoroutineScope manages one or more related coroutines.
+        viewModelScope.launch() {
 
-        // Send the request.
-        call.enqueue(object : Callback<GitHubUser> {
+            try {
 
-            /**
-             * Called if the network request is successful.
-             */
-            override fun onResponse(call: Call<GitHubUser>, response: Response<GitHubUser>) {
+                // Get the response.
+                val response = repository.getUser(login).awaitResponse()
 
-                // If the response is successful.
                 if (response.isSuccessful) {
 
                     // Get the GitHubUser from the response.
                     gitHubUser = response.body()
 
                     // Update the LiveData value to the GitHubUser.
-                    userLiveData.value = gitHubUser
+                    gitHubUserLiveData.value = gitHubUser
 
-                // If the response is unsuccessful.
                 } else {
-                    Toast.makeText(context, UNSUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
+
+                    // Update the LiveData for the request result.
+                    requestResultMessage.value = UNSUCCESSFUL_RESPONSE_MESSAGE
                 }
+            } catch (e: Exception) {
 
+                // Update the LiveData for the request result.
+                requestResultMessage.value = FAILED_REQUEST_MESSAGE
             }
 
-            /**
-             * Called if the network request fails.
-             */
-            override fun onFailure(call: Call<GitHubUser>, t: Throwable) {
-                Toast.makeText(context, FAILED_REQUEST, Toast.LENGTH_SHORT).show()
-            }
-
-        })
+        }
     }
 
     companion object {
-        private const val UNSUCCESSFUL_RESPONSE: String = "User not found. Please try again."
-        private const val FAILED_REQUEST: String =
+
+        // Message used if the network response is unsuccessful.
+        private const val UNSUCCESSFUL_RESPONSE_MESSAGE: String =
+            "User not found. Please try again."
+
+        // Message used if the network request fails.
+        private const val FAILED_REQUEST_MESSAGE: String =
             "Failed request. Please check your internet connection."
+
     }
 }

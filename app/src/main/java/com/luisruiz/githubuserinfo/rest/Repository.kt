@@ -2,7 +2,6 @@ package com.luisruiz.githubuserinfo.rest
 
 import com.luisruiz.githubuserinfo.model.GitHubUser
 import retrofit2.Call
-import retrofit2.Retrofit
 
 
 class Repository(private val gitHubService: GitHubService) {
