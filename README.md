@@ -3,7 +3,7 @@ An Android application that retrieves a GitHub user's information using the GitH
 
 GitHub User Info can be [downloaded from the Play Store.](https://play.google.com/store/apps/details?id=com.luisruiz.githubuserinfo)
 
-This application is written written in Kotlin and uses the following libraries:
+This application is written in Kotlin and uses the following libraries:
 
 * Retrofit with coroutines
 * Glide
